@@ -15,7 +15,7 @@ def play():
     headers = {'content-type': 'application/json'}
     
 
-    xbmc_host = '153.106.89.75'
+    xbmc_host = 'xxx.xxx.xx.xx'
 
     xbmc_port = 8080
     
@@ -29,7 +29,7 @@ def play():
     response = requests.get(xbmc_json_rpc_url + '?' + url_param, headers=headers)
     
     data = json.loads(response.text)
-
+https://github.com/justinbaskaran/Kodi-Remote-Control.git
     if data['result']:
 
         player_id = data['result'][0]["playerid"]
@@ -41,7 +41,7 @@ def play():
 def vUp():
     headers = {'content-type': 'application/json'}
     
-    xbmc_host = '153.106.89.75'
+    xbmc_host = 'xxx.xxx.xx.xx'
     
     xbmc_port = 8080
 
@@ -66,7 +66,7 @@ def vDown():
     headers = {'content-type': 'application/json'}
     
 
-    xbmc_host = '153.106.89.75'
+    xbmc_host = 'xxx.xxx.xx.xx'
 
     xbmc_port = 8080
 
@@ -93,7 +93,7 @@ def lChannel():
     headers = {'content-type': 'application/json'}
     
 
-    xbmc_host = '153.106.89.75'
+    xbmc_host = 'xxx.xxx.xx.xx'
 
     xbmc_port = 8080
 
@@ -119,7 +119,7 @@ def nChannel():
     headers = {'content-type': 'application/json'}
     
 
-    xbmc_host = '153.106.89.75'
+    xbmc_host = 'xxx.xxx.xx.xx'
 
     xbmc_port = 8080
 
@@ -145,7 +145,7 @@ def getPlaylist():
     headers = {'content-type': 'application/json'}
     
 
-    xbmc_host = '153.106.89.75'
+    xbmc_host = 'xxx.xxx.xx.xx'
 
     xbmc_port = 8080
 
@@ -245,7 +245,7 @@ def add(test,bottomFrame,tree,playlist):
     headers = {'content-type': 'application/json'}
     
 
-    xbmc_host = '153.106.89.75'
+    xbmc_host = 'xxx.xxx.xx.xx'
 
     xbmc_port = 8080
 
