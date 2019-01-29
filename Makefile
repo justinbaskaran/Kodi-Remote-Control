@@ -1,6 +1,2 @@
 all:
-	javac streamer.java
-	java streamer
-clean:
-	rm *.class
-	
+	python3 remote.py
