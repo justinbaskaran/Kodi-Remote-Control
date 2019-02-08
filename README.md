@@ -9,4 +9,6 @@ Features
 v1
 Currently made the GUI
 
-Run make file with sudo privileges..
+To Run:
+    1) Run make file with sudo privileges.. "sudo make"
+    2) run program like this "./kremote xxx.xxx.xx.xx"

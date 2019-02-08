@@ -4,13 +4,14 @@ from tkinter.ttk import Separator, Style,Treeview
 import requests
 import json
 import urllib
+import sys
  
 playlist=[]
 
-xbmc_host = "xxx.xxx.xxx.xx"
+xbmc_host = ""
 
 def main():
-    setupGUI()
+    setupGUI(sys.argv[1])
     
 
 def play():
@@ -160,7 +161,7 @@ def getPlaylist():
 
     print(data1)
 
-    if data1['result']['items'] is NONE:
+    if 'items' not in data1['result']:
             print("Nothing in List")
 
     else:
@@ -175,13 +176,9 @@ def getPlaylist():
 
         return names    
 
-
-    
-
-   
-        
-
-def setupGUI():
+def setupGUI(ip): 
+    global xbmc_host   # declare a to be a global
+    xbmc_host = ip  # this sets the global value of a
     root = Tk()
     root.geometry("1000x350") 
     root.title('Kodi Remote')
@@ -219,9 +216,10 @@ def setupGUI():
 
     tree =Treeview(bottomframe, column=("col1"), show="headings")
     tree.heading('#1', text='Name')
-    for x in playlist:
-        print(x)
-        tree.insert("","end" ,values=(x))
+    if (playlist is NONE ):
+        for x in playlist:
+                print(x)
+                tree.insert("","end" ,values=(x))
     tree.grid(row=2, column=0)
 
 
@@ -237,9 +235,10 @@ def setupGUI():
 
 def reload(bottomFrame,tree,playlist):
     tree.delete(*tree.get_children())
-    for x in playlist:
-        print(x)
-        tree.insert("",0,values=(x))
+    if (len(playlist) > 0 or playlist ):
+        for x in playlist:
+                print(x)
+                tree.insert("",0,values=(x))
     
 
 
