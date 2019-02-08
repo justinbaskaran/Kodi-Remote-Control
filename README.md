@@ -8,3 +8,5 @@ Features
 
 v1
 Currently made the GUI
+
+Run make file with sudo privileges..
