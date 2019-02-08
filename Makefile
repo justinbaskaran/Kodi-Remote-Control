@@ -1,2 +1,3 @@
 all:
-	python3 remote.py
+	chmod +x kremote
+	./kremote
