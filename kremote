@@ -262,7 +262,18 @@ def add(test,bottomFrame,tree,playlist):
 
         player_id = data['result'][0]["playerid"]
 
-        payload = {"jsonrpc":"2.0","id":1,"method":"Playlist.Add","params":{"playlistid":1,"item":{"file":test}}} 
+        video = test
+
+        
+        if "youtu" in video:
+                ID = video.split("=",1)[1] 
+                payload = {"jsonrpc":"2.0","id":1,"method":"Playlist.Add","params":{"playlistid":1,"item":{"file":"plugin://plugin.video.youtube/?action=play_video&videoid="+ID}}} 
+        else:
+                payload = {"jsonrpc":"2.0","id":1,"method":"Playlist.Add","params":{"playlistid":1,"item":{"file":video}}} 
+
+
+
+
         if (test !=""):
             response = requests.post(xbmc_json_rpc_url, data=json.dumps(payload), headers=headers)
             playlist = getPlaylist()
