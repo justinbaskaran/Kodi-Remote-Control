@@ -219,11 +219,7 @@ def setupGUI(ip):
 
     tree =Treeview(bottomframe, column=("col1"), show="headings")
     tree.heading('#1', text='Name')
-    
-    if (playlist is NONE ):
-        for x in playlist:
-                print(x)
-                tree.insert("","end" ,values=(x))
+
     tree.grid(row=2, column=0)
 
     try:
@@ -241,13 +237,14 @@ def setupGUI(ip):
 
 def reload(bottomFrame,tree):
     while True:
-        #time.sleep(5)
+        time.sleep(2)
         playlist = getPlaylist()
         tree.delete(*tree.get_children())
         if (len(playlist) > 0 or playlist ):
+                #tree.insert("",0,values=("xfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf"))
                 for x in playlist:
                         print(x)
-                        tree.insert("",0,values=(x))
+                        tree.insert("",0,values=(x,))
     
 
 
