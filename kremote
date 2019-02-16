@@ -241,7 +241,7 @@ def setupGUI(ip):
 
 def reload(bottomFrame,tree):
     while True:
-        time.sleep(5)
+        #time.sleep(5)
         playlist = getPlaylist()
         tree.delete(*tree.get_children())
         if (len(playlist) > 0 or playlist ):
