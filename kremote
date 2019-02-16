@@ -5,6 +5,8 @@ import requests
 import json
 import urllib
 import sys,os
+import _thread
+import time
  
 playlist=[]
 
@@ -217,12 +219,18 @@ def setupGUI(ip):
 
     tree =Treeview(bottomframe, column=("col1"), show="headings")
     tree.heading('#1', text='Name')
+    
     if (playlist is NONE ):
         for x in playlist:
                 print(x)
                 tree.insert("","end" ,values=(x))
     tree.grid(row=2, column=0)
 
+    try:
+        _thread.start_new_thread( reload, (bottomframe, tree)) 
+    except:
+        print ("Error: unable to start thread")
+   
 
     addURLBtn = Button(bottomframe, text="ADD TO PLAYLIST" , command =lambda:add(addURLBox.get(),bottomframe,tree,playlist))
     addURLBtn.grid(row=1, column=1)
@@ -231,12 +239,15 @@ def setupGUI(ip):
     root.iconphoto(True, PhotoImage(file=os.path.join(program_directory, "kodi.png")))
     root.mainloop()
 
-def reload(bottomFrame,tree,playlist):
-    tree.delete(*tree.get_children())
-    if (len(playlist) > 0 or playlist ):
-        for x in playlist:
-                print(x)
-                tree.insert("",0,values=(x))
+def reload(bottomFrame,tree):
+    while True:
+        time.sleep(5)
+        playlist = getPlaylist()
+        tree.delete(*tree.get_children())
+        if (len(playlist) > 0 or playlist ):
+                for x in playlist:
+                        print(x)
+                        tree.insert("",0,values=(x))
     
 
 
@@ -276,9 +287,10 @@ def add(test,bottomFrame,tree,playlist):
 
         if (test !=""):
             response = requests.post(xbmc_json_rpc_url, data=json.dumps(payload), headers=headers)
-            playlist = getPlaylist()
-            reload(bottomFrame,tree,playlist);
+           # reload(bottomFrame,tree)
         
 
 if __name__== "__main__":
       main()
+
+      
