@@ -7,7 +7,8 @@ import urllib
 import sys,os
 import _thread
 import time
- 
+
+
 playlist=[]
 
 xbmc_host = ""
@@ -219,25 +220,34 @@ def setupGUI(ip):
 
     tree =Treeview(bottomframe, column=("col1"), show="headings")
     tree.heading('#1', text='Name')
-
+    tree.column("#1",minwidth=0,width=500)
     tree.grid(row=2, column=0)
 
+   
+
+
+        
     try:
-        _thread.start_new_thread( reload, (bottomframe, tree)) 
+       thread.start_new_thread,( reload, (bottomframe,tree) ).start()
     except:
-        print ("Error: unable to start thread")
+       print ("Error: unable to start thread")
+
+
    
 
     addURLBtn = Button(bottomframe, text="ADD TO PLAYLIST" , command =lambda:add(addURLBox.get(),bottomframe,tree,playlist))
     addURLBtn.grid(row=1, column=1)
+
+
+    addURLBtn = Button(bottomframe, text="Refresh" , command =lambda:reload(bottomframe,tree))
+    addURLBtn.grid(row=2, column=1)
+
 
     program_directory=sys.path[0]
     root.iconphoto(True, PhotoImage(file=os.path.join(program_directory, "kodi.png")))
     root.mainloop()
 
 def reload(bottomFrame,tree):
-    while True:
-        time.sleep(2)
         playlist = getPlaylist()
         tree.delete(*tree.get_children())
         if (len(playlist) > 0 or playlist ):
